@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Katmai Computing - Quantum Computing Classes and Learning Paths">
+    <title>Katmai Computing - Classes</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='80' font-size='80'%3E⚛️%3C/text%3E%3C/svg%3E">
+    <style>
+        :root {
+            --primary-purple: #8B5CF6;
+            --light-purple: #A78BFA;
+            --dark-purple: #6D28D9;
+            --accent-purple: #7C3AED;
+            --bg-dark: #121222;
+            --bg-darker: #090917;
+            --bg-card: #1A1B2E;
+            --text-light: #FFFFFF;
+            --text-dim: #A9A9CC;
+            --border-color: #2E2E4A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+        
+        header {
+            background-color: var(--bg-darker);
+            color: var(--text-light);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            gap: 5px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            font-size: 1.2rem;
+        }
+        
+        .logo-symbol {
+            color: var(--primary-purple);
+            margin-right: 0.5rem;
+            font-size: 1.4rem;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .header-button {
+            background-color: rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--primary-purple);
+            color: var(--text-light);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+        
+        .header-button:hover {
+            background-color: rgba(139, 92, 246, 0.2);
+        }
+        
+        main {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .content-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .content-title-icon {
+            color: var(--primary-purple);
+        }
+        
+        .content-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .action-button {
+            background-color: rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+        
+        .action-button:hover {
+            background-color: rgba(139, 92, 246, 0.2);
+            border-color: var(--primary-purple);
+        }
+        
+        .container {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+        
+        .sidebar-section {
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .sidebar-header {
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        
+        .sidebar-header h2 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .sidebar-icon {
+            color: var(--primary-purple);
+        }
+        
+        .sidebar-content {
+            padding: 0.5rem 0;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+        }
+        
+        .sidebar-menu li {
+            padding: 0.6rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .sidebar-menu li:hover {
+            background-color: rgba(139, 92, 246, 0.1);
+        }
+        
+        .sidebar-menu li.active {
+            background-color: rgba(139, 92, 246, 0.2);
+            border-left: 3px solid var(--primary-purple);
+        }
+        
+        .sidebar-menu a {
+            color: var(--text-dim);
+            text-decoration: none;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+        
+        .sidebar-menu li.active a {
+            color: var(--text-light);
+        }
+        
+        .collapsed-icon {
+            transition: transform 0.3s;
+        }
+        
+        .arrow-icon {
+            opacity: 0.5;
+            font-size: 0.8rem;
+        }
+        
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            flex: 1;
+        }
+        
+        .class-card {
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+        
+        .class-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary-purple);
+        }
+        
+        .class-image {
+            height: 140px;
+            background: linear-gradient(to right, var(--bg-card), var(--primary-purple));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .class-image::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='rgba(255, 255, 255, 0.05)' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+        
+        .class-icon {
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 1;
+            color: var(--text-light);
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .class-level {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: var(--text-light);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+        }
+        
+        .class-content {
+            padding: 1.2rem;
+        }
+        
+        .class-title {
+            color: var(--text-light);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .class-description {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        
+        .class-topics {
+            color: var(--primary-purple);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.8rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            background-color: rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--primary-purple);
+            color: var(--primary-purple);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .classes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-actions {
+                display: none;
+            }
+        }
+        
+        /* Add focus styles for better keyboard navigation */
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--primary-purple);
+            outline-offset: 2px;
+        }
+        
+        /* Improve button hover states */
+        .back-button:hover,
+        .back-button:focus {
+            color: var(--primary-purple);
+        }
+        
+        /* Add print styles */
+        @media print {
+            header, .sidebar {
+                display: none;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .class-card {
+                break-inside: avoid;
+                border: 1px solid #ccc;
+            }
+            
+            .content-actions {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="back-button" aria-label="Go back to projects" type="button">
+            <span aria-hidden="true" lang="en">←</span> Back to Projects
+        </button>
+        <div class="logo" role="banner">
+            <span class="logo-symbol" aria-hidden="true" lang="en">&lt;|&gt;</span> Katmai Computing
+        </div>
+        <div class="header-actions">
+            <button class="header-button" aria-label="Equipment settings" type="button">
+                <span aria-hidden="true">⚙️</span> Equipment
+            </button>
+            <button class="header-button" aria-label="Export content" type="button">
+                <span aria-hidden="true">↗️</span> Export
+            </button>
+            <button class="header-button" aria-label="Maximize grid view" type="button">
+                <span aria-hidden="true">⊞</span> Maximize Grid
+            </button>
+        </div>
+    </header>
+    
+    <main>
+        <div class="content-header">
+            <div class="content-title">
+                <span class="content-title-icon" aria-hidden="true">⚛️</span> Quantum Computing Classes
+            </div>
+            <div class="content-actions">
+                <button class="action-button" aria-label="View parameters" type="button">Parameters <span aria-hidden="true">⚙️</span></button>
+                <button class="action-button" aria-label="View sequence" type="button">Sequence <span aria-hidden="true">📋</span></button>
+            </div>
+        </div>
+        
+        <div class="container">
+            <aside class="sidebar" aria-label="Course navigation">
+                <nav>
+                    <div class="sidebar-section">
+                        <div class="sidebar-header" role="button" aria-expanded="true" tabindex="0">
+                            <h2><span class="sidebar-icon" aria-hidden="true">📚</span> Learning Paths</h2>
+                            <span class="collapsed-icon" aria-hidden="true">▼</span>
+                        </div>
+                        <div class="sidebar-content">
+                            <ul class="sidebar-menu" role="menu">
+                                <li role="menuitem" class="active"><a href="#intro" aria-current="page">Introduction <span class="arrow-icon" aria-hidden="true">›</span></a></li>
+                                <li role="menuitem"><a href="#gates">Quantum Gate, Circuit and Algorithm <span class="arrow-icon" aria-hidden="true">›</span></a></li>
+                                <li role="menuitem"><a href="#math">Mathematical Expression <span class="arrow-icon" aria-hidden="true">›</span></a></li>
+                                <li role="menuitem"><a href="#build">Make a Quantum Computer <span class="arrow-icon" aria-hidden="true">›</span></a></li>
+                                <li role="menuitem"><a href="#advanced">Expand Knowledge <span class="arrow-icon" aria-hidden="true">›</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <div class="sidebar-header" role="button" aria-expanded="true" tabindex="0">
+                            <h2><span class="sidebar-icon" aria-hidden="true">🧪</span> Lab Resources</h2>
+                            <span class="collapsed-icon" aria-hidden="true">▼</span>
+                        </div>
+                        <div class="sidebar-content">
+                            <ul class="sidebar-menu" role="menu">
+                                <li role="menuitem"><a href="#nmr">NMR Controls <span class="arrow-icon" aria-hidden="true">›</span></a></li>
+                                <li role="menuitem"><a href="#gates">Quantum Gates <span class="arrow-icon" aria-hidden="true">›</span></a></li>
+                                <li role="menuitem"><a href="#pulse">Pulse Sequences <span class="arrow-icon" aria-hidden="true">›</span></a></li>
+                                <li role="menuitem"><a href="#freq">Frequency Settings <span class="arrow-icon" aria-hidden="true">›</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </aside>
+            
+            <div class="classes-grid" role="list">
+                <!-- Class Card 1 -->
+                <article class="class-card" role="listitem">
+                    <div class="class-image" aria-hidden="true">
+                        <div class="class-icon">⚛️</div>
+                        <div class="class-level">Beginner</div>
+                    </div>
+                    <div class="class-content">
+                        <h3 class="class-title">Lecture 1: Computing and Computer</h3>
+                        <p class="class-description">Fundamental introduction to quantum computing principles and the basics of quantum information processing.</p>
+                        <div class="class-topics" aria-label="Topics covered">
+                            <span class="badge">Decimal</span>
+                            <span class="badge">Binary</span>
+                            <span class="badge">Von Neumann</span>
+                            <span class="badge">Boolean Logic</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Class Card 2 -->
+                <article class="class-card" role="listitem">
+                    <div class="class-image" aria-hidden="true">
+                        <div class="class-icon">🔄</div>
+                        <div class="class-level">Beginner</div>
+                    </div>
+                    <div class="class-content">
+                        <h3 class="class-title">Lecture 2: Qubit</h3>
+                        <p class="class-description">Learn about quantum bits, their properties, and how they differ from classical bits in computation.</p>
+                        <div class="class-topics" aria-label="Topics covered">
+                            <span class="badge">Quantum Mechanics</span>
+                            <span class="badge">Superposition</span>
+                            <span class="badge">Measurement</span>
+                            <span class="badge">Entanglement</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Class Card 3 -->
+                <article class="class-card" role="listitem">
+                    <div class="class-image" aria-hidden="true">
+                        <div class="class-icon" lang="en">⟨ψ|</div>
+                        <div class="class-level">Intermediate</div>
+                    </div>
+                    <div class="class-content">
+                        <h3 class="class-title">Lecture 3: Classical to Quantum Computing</h3>
+                        <p class="class-description">Explore the transition from classical to quantum computing paradigms and core concepts.</p>
+                        <div class="class-topics" aria-label="Topics covered">
+                            <span class="badge">Half Adder</span>
+                            <span class="badge">Full Adder</span>
+                            <span class="badge">X Gate</span>
+                            <span class="badge">CNOT Gate</span>
+                            <span class="badge">Toffoli Gate</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Class Card 4 -->
+                <article class="class-card" role="listitem">
+                    <div class="class-image" aria-hidden="true">
+                        <div class="class-icon">🔬</div>
+                        <div class="class-level">Intermediate</div>
+                    </div>
+                    <div class="class-content">
+                        <h3 class="class-title">Lecture 4: Quantum Computing Circuit Model</h3>
+                        <p class="class-description">Learn about quantum circuit design principles and implementation of quantum algorithms.</p>
+                        <div class="class-topics" aria-label="Topics covered">
+                            <span class="badge">Qubit States</span>
+                            <span class="badge">Superposition</span>
+                            <span class="badge">H Gate</span>
+                            <span class="badge">Bell State</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Class Card 5 -->
+                <article class="class-card" role="listitem">
+                    <div class="class-image" aria-hidden="true">
+                        <div class="class-icon">🧮</div>
+                        <div class="class-level">Advanced</div>
+                    </div>
+                    <div class="class-content">
+                        <h3 class="class-title">Lecture 5: Deutsch Algorithm</h3>
+                        <p class="class-description">Dive into the Deutsch algorithm, one of the first examples of quantum algorithms outperforming classical ones.</p>
+                        <div class="class-topics" aria-label="Topics covered">
+                            <span class="badge">Quantum Algorithm</span>
+                            <span class="badge">Oracle Functions</span>
+                            <span class="badge">Parallelism</span>
+                            <span class="badge">Interference</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Class Card 6 -->
+                <article class="class-card" role="listitem">
+                    <div class="class-image" aria-hidden="true">
+                        <div class="class-icon" lang="en">⟩|⟨</div>
+                        <div class="class-level">Advanced</div>
+                    </div>
+                    <div class="class-content">
+                        <h3 class="class-title">Lecture 6: Quantum Computing Circuit Model (2)</h3>
+                        <p class="class-description">Advanced quantum circuit design with focus on complex gate operations and measurements.</p>
+                        <div class="class-topics" aria-label="Topics covered">
+                            <span class="badge">Z Gate</span>
+                            <span class="badge">CZ Gate</span>
+                            <span class="badge">Toffoli Applications</span>
+                            <span class="badge">Measurement</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Class Card 7 -->
+                <article class="class-card" role="listitem">
+                    <div class="class-image" aria-hidden="true">
+                        <div class="class-icon" lang="en">|Ψ⟩</div>
+                        <div class="class-level">Advanced</div>
+                    </div>
+                    <div class="class-content">
+                        <h3 class="class-title">Lecture 7: Quantum States Preparation</h3>
+                        <p class="class-description">Learn techniques for preparing and manipulating specific quantum states for computation.</p>
+                        <div class="class-topics" aria-label="Topics covered">
+                            <span class="badge">State Vectors</span>
+                            <span class="badge">Density Matrices</span>
+                            <span class="badge">Purification</span>
+                            <span class="badge">Quantum Channels</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Class Card 8 -->
+                <article class="class-card" role="listitem">
+                    <div class="class-image" aria-hidden="true">
+                        <div class="class-icon">🔍</div>
+                        <div class="class-level">Expert</div>
+                    </div>
+                    <div class="class-content">
+                        <h3 class="class-title">Lecture 8: Grover Algorithm</h3>
+                        <p class="class-description">Explore Grover's quantum search algorithm and its applications in database searching.</p>
+                        <div class="class-topics" aria-label="Topics covered">
+                            <span class="badge">Amplitude Amplification</span>
+                            <span class="badge">Oracle</span>
+                            <span class="badge">Diffusion Operator</span>
+                            <span class="badge">Quadratic Speedup</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
