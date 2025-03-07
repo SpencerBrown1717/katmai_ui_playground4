@@ -44,16 +44,50 @@
 /* CSS Custom Properties with fallbacks */
 :root {
     /* Theme Colors */
-    --primary-hue: 220;
-    --primary-color: hsl(var(--primary-hue), 90%, 50%);
-    --primary-color-light: hsl(var(--primary-hue), 90%, 65%);
-    --primary-color-dark: hsl(var(--primary-hue), 90%, 35%);
+    --primary-hue: 270;  /* Deep purple for quantum theme */
+    --primary-saturation: 90%;
+    --primary-lightness: 65%;
+    --primary-color: hsl(var(--primary-hue), var(--primary-saturation), var(--primary-lightness));
+    --primary-color-light: hsl(var(--primary-hue), var(--primary-saturation), 80%);
+    --primary-color-dark: hsl(var(--primary-hue), var(--primary-saturation), 50%);
+    --primary-gradient: linear-gradient(135deg, 
+        var(--primary-color) 0%, 
+        hsl(calc(var(--primary-hue) + 60), var(--primary-saturation), var(--primary-lightness)) 100%
+    );
     
     /* Semantic Colors */
-    --text-primary: hsl(var(--primary-hue), 15%, 15%);
-    --text-secondary: hsl(var(--primary-hue), 15%, 45%);
-    --background-primary: hsl(var(--primary-hue), 30%, 99%);
-    --background-secondary: hsl(var(--primary-hue), 30%, 96%);
+    --text-primary: hsl(var(--primary-hue), 15%, 20%);
+    --text-secondary: hsl(var(--primary-hue), 15%, 40%);
+    --background-primary: hsl(var(--primary-hue), 30%, 98%);
+    --background-secondary: hsl(var(--primary-hue), 30%, 95%);
+    --border-color: hsl(var(--primary-hue), 30%, 90%);
+    
+    /* Accent Colors */
+    --accent-success: hsl(170, 90%, 40%);  /* Quantum teal */
+    --accent-success-light: hsl(170, 90%, 50%);
+    --accent-warning: hsl(45, 90%, 50%);
+    --accent-error: hsl(350, 90%, 50%);  /* Scientific red */
+    --accent-info: hsl(220, 90%, 55%);  /* Quantum blue */
+    
+    /* Card Colors */
+    --card-gradient: linear-gradient(135deg, 
+        hsla(var(--primary-hue), 85%, 97%, 0.95) 0%,
+        hsla(calc(var(--primary-hue) + 60), 85%, 98%, 0.98) 100%
+    );
+    --card-hover-gradient: linear-gradient(135deg,
+        hsla(var(--primary-hue), 85%, 96%, 0.98) 0%,
+        hsla(calc(var(--primary-hue) + 60), 85%, 97%, 1) 100%
+    );
+    
+    /* Badge Colors */
+    --badge-beginner: hsl(170, 90%, 40%);  /* Quantum teal */
+    --badge-intermediate: hsl(220, 90%, 50%);  /* Quantum blue */
+    --badge-advanced: hsl(270, 90%, 55%);  /* Deep purple */
+    --badge-expert: hsl(315, 90%, 50%);  /* Magenta */
+    
+    /* Shadow Colors */
+    --shadow-color: hsla(var(--primary-hue), 50%, 10%, 0.1);
+    --shadow-color-strong: hsla(var(--primary-hue), 50%, 10%, 0.2);
     
     /* Spacing System */
     --space-unit: 0.25rem;
@@ -77,9 +111,9 @@
     --animation-rotate: rotate(2deg);
     
     /* Shadows */
-    --shadow-sm: 0 1px 2px hsl(var(--primary-hue), 10%, 20%, 0.1);
-    --shadow-md: 0 4px 6px hsl(var(--primary-hue), 10%, 20%, 0.1);
-    --shadow-lg: 0 10px 15px hsl(var(--primary-hue), 10%, 20%, 0.1);
+    --shadow-sm: 0 2px 4px hsla(var(--primary-hue), 50%, 10%, 0.1);
+    --shadow-md: 0 4px 8px hsla(var(--primary-hue), 50%, 10%, 0.15);
+    --shadow-lg: 0 8px 16px hsla(var(--primary-hue), 50%, 10%, 0.2);
     
     /* Border Radius */
     --radius-sm: 0.25rem;
@@ -90,18 +124,42 @@
 
 /* Dark Theme */
 .theme-dark {
-    --primary-color: hsl(var(--primary-hue), 80%, 60%);
-    --primary-color-light: hsl(var(--primary-hue), 80%, 75%);
-    --primary-color-dark: hsl(var(--primary-hue), 80%, 45%);
+    --primary-lightness: 70%;
+    --primary-color: hsl(var(--primary-hue), var(--primary-saturation), var(--primary-lightness));
+    --primary-color-light: hsl(var(--primary-hue), var(--primary-saturation), 85%);
+    --primary-color-dark: hsl(var(--primary-hue), var(--primary-saturation), 55%);
     
-    --text-primary: hsl(var(--primary-hue), 15%, 90%);
-    --text-secondary: hsl(var(--primary-hue), 15%, 70%);
-    --background-primary: hsl(var(--primary-hue), 15%, 10%);
-    --background-secondary: hsl(var(--primary-hue), 15%, 15%);
+    --text-primary: hsl(var(--primary-hue), 15%, 98%);
+    --text-secondary: hsl(var(--primary-hue), 15%, 80%);
+    --background-primary: hsl(var(--primary-hue), 20%, 8%);
+    --background-secondary: hsl(var(--primary-hue), 20%, 12%);
+    --border-color: hsl(var(--primary-hue), 20%, 20%);
     
-    --shadow-sm: 0 1px 2px hsl(var(--primary-hue), 50%, 5%, 0.2);
-    --shadow-md: 0 4px 6px hsl(var(--primary-hue), 50%, 5%, 0.2);
-    --shadow-lg: 0 10px 15px hsl(var(--primary-hue), 50%, 5%, 0.2);
+    /* Dark Theme Card Colors */
+    --card-gradient: linear-gradient(135deg,
+        hsla(var(--primary-hue), 20%, 10%, 0.95) 0%,
+        hsla(calc(var(--primary-hue) + 60), 20%, 12%, 0.98) 100%
+    );
+    --card-hover-gradient: linear-gradient(135deg,
+        hsla(var(--primary-hue), 20%, 12%, 0.98) 0%,
+        hsla(calc(var(--primary-hue) + 60), 20%, 15%, 1) 100%
+    );
+    
+    /* Dark Theme Shadow Colors */
+    --shadow-color: hsla(var(--primary-hue), 50%, 5%, 0.3);
+    --shadow-color-strong: hsla(var(--primary-hue), 50%, 5%, 0.4);
+    
+    /* Accent Colors Adjustments */
+    --accent-success: hsl(170, 90%, 55%);
+    --accent-success-light: hsl(170, 90%, 65%);
+    --accent-warning: hsl(45, 90%, 60%);
+    --accent-error: hsl(350, 90%, 60%);
+    --accent-info: hsl(220, 90%, 65%);
+    
+    /* Shadow Adjustments */
+    --shadow-sm: 0 2px 4px hsla(var(--primary-hue), 50%, 5%, 0.2);
+    --shadow-md: 0 4px 8px hsla(var(--primary-hue), 50%, 5%, 0.25);
+    --shadow-lg: 0 8px 16px hsla(var(--primary-hue), 50%, 5%, 0.3);
 }
 
 /* Advanced Animations */
@@ -166,13 +224,14 @@
 /* Enhanced Card Styles */
 .class-card {
     position: relative;
-    background: var(--background-primary);
+    background: var(--card-gradient);
     border-radius: var(--radius-md);
     padding: var(--space-lg);
     box-shadow: var(--shadow-md);
     transition: all var(--transition-medium);
     transform-style: preserve-3d;
     perspective: 1000px;
+    border: 1px solid var(--border-color);
     
     &::before,
     &::after {
@@ -207,6 +266,8 @@
     &:hover {
         transform: translateY(-8px) scale(1.02);
         box-shadow: var(--shadow-lg);
+        background: var(--card-hover-gradient);
+        border-color: var(--primary-color-light);
         
         &::before {
             opacity: 1;
@@ -240,6 +301,25 @@
     
     &[data-animation="scale-in"] {
         animation: scale-in 0.6s var(--transition-medium) backwards;
+    }
+    
+    .class-level {
+        &[data-level="beginner"] {
+            color: var(--badge-beginner);
+            background: hsla(145, 85%, 45%, 0.1);
+        }
+        &[data-level="intermediate"] {
+            color: var(--badge-intermediate);
+            background: hsla(200, 85%, 55%, 0.1);
+        }
+        &[data-level="advanced"] {
+            color: var(--badge-advanced);
+            background: hsla(270, 85%, 60%, 0.1);
+        }
+        &[data-level="expert"] {
+            color: var(--badge-expert);
+            background: hsla(320, 85%, 55%, 0.1);
+        }
     }
 }
 
@@ -298,15 +378,14 @@
     }
     
     &.btn-primary {
-        background: var(--primary-color);
-        color: white;
+        background: var(--primary-gradient);
+        border: none;
         
         &:hover {
-            background: var(--primary-color-light);
-        }
-        
-        &:active {
-            background: var(--primary-color-dark);
+            background: linear-gradient(135deg,
+                var(--primary-color-light) 0%,
+                hsl(calc(var(--primary-hue) + 15), 85%, 75%) 100%
+            );
         }
     }
     
@@ -336,6 +415,22 @@
             margin-left: var(--space-xs);
         }
     }
+    
+    &.btn-success {
+        background: linear-gradient(135deg,
+            var(--accent-success) 0%,
+            var(--accent-success-light) 100%
+        );
+        border: none;
+    }
+    
+    &.btn-error {
+        background: linear-gradient(135deg,
+            var(--accent-error) 0%,
+            hsl(0, 85%, 65%) 100%
+        );
+        border: none;
+    }
 }
 
 /* Enhanced Badge Styles */
@@ -347,16 +442,17 @@
     font-size: 0.875em;
     font-weight: var(--font-weight-bold);
     color: var(--primary-color);
-    background: hsla(var(--primary-hue), 90%, 50%, 0.1);
+    background: hsla(var(--primary-hue), 85%, 60%, 0.1);
     transition: all var(--transition-medium);
     margin: var(--space-xs);
     cursor: pointer;
+    border: 1px solid hsla(var(--primary-hue), 85%, 60%, 0.2);
     
     &:hover {
         transform: translateY(-2px);
-        background: var(--primary-color);
+        background: var(--primary-gradient);
+        border-color: transparent;
         color: white;
-        box-shadow: var(--shadow-md);
     }
     
     &:active {
@@ -368,8 +464,8 @@
 .modal {
     position: fixed;
     inset: 0;
-    background: hsla(var(--primary-hue), 15%, 5%, 0.8);
-    backdrop-filter: blur(8px);
+    background: hsla(var(--primary-hue), 15%, 5%, 0.7);
+    backdrop-filter: blur(10px);
     display: none;
     place-items: center;
     padding: var(--space-md);
@@ -387,7 +483,7 @@
     }
     
     .modal-content {
-        background: var(--background-primary);
+        background: var(--card-gradient);
         padding: var(--space-lg);
         border-radius: var(--radius-lg);
         box-shadow: var(--shadow-lg);
@@ -423,7 +519,7 @@
     bottom: var(--space-lg);
     right: var(--space-lg);
     padding: var(--space-md);
-    background: var(--background-primary);
+    background: var(--card-gradient);
     color: var(--text-primary);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-lg);
@@ -438,11 +534,11 @@
     }
     
     &.toast-success {
-        border-left: 4px solid hsl(120, 90%, 50%);
+        border-left: 4px solid var(--accent-success);
     }
     
     &.toast-error {
-        border-left: 4px solid hsl(0, 90%, 50%);
+        border-left: 4px solid var(--accent-error);
     }
 }
 
@@ -654,73 +750,6 @@
     animation: spinner 0.8s linear infinite;
 }
 
-/* Enhanced Button States */
-.btn {
-    &.btn-success {
-        background: hsl(120, 90%, 45%);
-        border-color: hsl(120, 90%, 45%);
-        color: white;
-        
-        &:hover {
-            background: hsl(120, 90%, 40%);
-            border-color: hsl(120, 90%, 40%);
-        }
-    }
-    
-    &.btn-error {
-        background: hsl(0, 90%, 45%);
-        border-color: hsl(0, 90%, 45%);
-        color: white;
-        
-        &:hover {
-            background: hsl(0, 90%, 40%);
-            border-color: hsl(0, 90%, 40%);
-        }
-    }
-    
-    &.loading-state {
-        position: relative;
-        color: transparent !important;
-        
-        &::after {
-            content: '';
-            position: absolute;
-            width: 1rem;
-            height: 1rem;
-            border: 2px solid;
-            border-radius: 50%;
-            border-right-color: transparent;
-            animation: spinner 0.8s linear infinite;
-        }
-    }
-}
-
-/* Enhanced Toast Styles */
-.toast {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    max-width: 400px;
-    width: 100%;
-    
-    &::before {
-        content: '';
-        width: 1.5rem;
-        height: 1.5rem;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-    }
-    
-    &.toast-success::before {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322c55e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 11.08V12a10 10 0 1 1-5.93-9.14'/%3E%3Cpolyline points='22 4 12 14.01 9 11.01'/%3E%3C/svg%3E");
-    }
-    
-    &.toast-error::before {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ef4444' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='15' y1='9' x2='9' y2='15'/%3E%3Cline x1='9' y1='9' x2='15' y2='15'/%3E%3C/svg%3E");
-    }
-}
-
 /* Responsive Enhancements */
 @media (max-width: 768px) {
     .course-preview {
@@ -755,6 +784,128 @@
         }
     }
 }
+
+/* Header Styles */
+header {
+    background: var(--card-gradient);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    padding: var(--space-md) var(--space-lg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    
+    .logo {
+        color: var(--primary-color);
+        font-weight: var(--font-weight-bold);
+        font-size: 1.25rem;
+        
+        .logo-symbol {
+            color: var(--primary-color-dark);
+            margin-right: var(--space-xs);
+        }
+    }
+    
+    .header-actions {
+        display: flex;
+        gap: var(--space-md);
+        
+        .header-button {
+            color: var(--text-secondary);
+            transition: all var(--transition-fast);
+            
+            &:hover {
+                color: var(--primary-color);
+                transform: translateY(-2px);
+            }
+        }
+    }
+    
+    .theme-toggle {
+        padding: var(--space-sm);
+        border-radius: var(--radius-md);
+        background: var(--background-secondary);
+        border: 1px solid var(--border-color);
+        color: var(--text-secondary);
+        transition: all var(--transition-fast);
+        
+        &:hover {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+    }
+}
+
+/* Footer Styles */
+.site-footer {
+    background: var(--card-gradient);
+    border-top: 1px solid var(--border-color);
+    padding: var(--space-xl) var(--space-lg);
+    margin-top: var(--space-xl);
+    
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--space-lg);
+        
+        p {
+            color: var(--text-secondary);
+        }
+    }
+    
+    .footer-nav {
+        display: flex;
+        gap: var(--space-lg);
+        
+        a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            
+            &:hover {
+                color: var(--primary-color);
+                transform: translateY(-2px);
+            }
+        }
+    }
+}
+
+/* Progress Bar Styles */
+.progress-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--primary-gradient);
+    z-index: 1000;
+    transition: width var(--transition-fast);
+}
+
+/* Skip Link Styles */
+.skip-link {
+    position: fixed;
+    top: -100%;
+    left: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--primary-gradient);
+    color: white;
+    text-decoration: none;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    z-index: 1001;
+    transition: top var(--transition-fast);
+    
+    &:focus {
+        top: 0;
+    }
+}
 </style>
 </head>
 <body>
@@ -772,8 +923,8 @@
 <div class="logo" role="banner">
 <span class="logo-symbol" aria-hidden="true">&lt;|&gt;</span> Katmai Computing
 </div>
-<button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
-<span aria-hidden="true">🌓</span>
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle quantum/classical mode">
+<span aria-hidden="true">⚛️</span>
 </button>
 <div class="header-actions">
 <button class="header-button" aria-label="Equipment settings" type="button">
@@ -1171,8 +1322,8 @@ const setTheme = (isDark) => {
     localStorage.setItem('theme', to);
     
     if (themeToggle) {
-        const icon = isDark ? '🌓' : '🌞';
-        const label = `Switch to ${isDark ? 'light' : 'dark'} mode`;
+        const icon = isDark ? '⚛️' : '|ψ⟩';
+        const label = `Switch to ${isDark ? 'classical' : 'quantum'} mode`;
         themeToggle.innerHTML = `<span aria-hidden="true">${icon}</span>`;
         themeToggle.setAttribute('aria-label', label);
     }
