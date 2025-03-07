@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Katmai Computing - Quantum Computing Classes and Learning Paths">
-    <title>Katmai Computing - Classes</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='80' font-size='80'%3E⚛️%3C/text%3E%3C/svg%3E">
+    <meta name="description" content="Katmai Computing - Educational portal for the world's most successful 1-qubit quantum NMR register">
+    <title>Katmai Computing - Quantum Classes Portal</title>
     <style>
         :root {
             --primary-purple: #8B5CF6;
@@ -30,6 +29,7 @@
         body {
             background-color: var(--bg-dark);
             color: var(--text-light);
+            line-height: 1.6;
         }
         
         header {
@@ -40,6 +40,9 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
         .back-button {
@@ -51,6 +54,11 @@
             cursor: pointer;
             font-size: 0.9rem;
             gap: 5px;
+            transition: color 0.2s;
+        }
+        
+        .back-button:hover {
+            color: var(--primary-purple);
         }
         
         .logo {
@@ -132,6 +140,7 @@
             align-items: center;
             gap: 0.5rem;
             font-size: 0.85rem;
+            transition: all 0.2s;
         }
         
         .action-button:hover {
@@ -150,10 +159,17 @@
             border-radius: 8px;
             border: 1px solid var(--border-color);
             overflow: hidden;
+            height: fit-content;
+            position: sticky;
+            top: 5.5rem;
         }
         
         .sidebar-section {
             border-bottom: 1px solid var(--border-color);
+        }
+        
+        .sidebar-section:last-child {
+            border-bottom: none;
         }
         
         .sidebar-header {
@@ -162,6 +178,11 @@
             align-items: center;
             justify-content: space-between;
             cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .sidebar-header:hover {
+            background-color: rgba(139, 92, 246, 0.1);
         }
         
         .sidebar-header h2 {
@@ -238,6 +259,9 @@
             overflow: hidden;
             border: 1px solid var(--border-color);
             transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
         
         .class-card:hover {
@@ -248,7 +272,7 @@
         
         .class-image {
             height: 140px;
-            background: linear-gradient(to right, var(--bg-card), var(--primary-purple));
+            background: linear-gradient(to right, var(--dark-purple), var(--primary-purple));
             display: flex;
             justify-content: center;
             align-items: center;
@@ -288,6 +312,9 @@
         
         .class-content {
             padding: 1.2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .class-title {
@@ -302,6 +329,7 @@
             font-size: 0.85rem;
             margin-bottom: 1rem;
             line-height: 1.4;
+            flex: 1;
         }
         
         .class-topics {
@@ -321,6 +349,84 @@
             font-size: 0.7rem;
             margin-right: 0.5rem;
             margin-bottom: 0.5rem;
+            transition: background-color 0.2s;
+        }
+        
+        .badge:hover {
+            background-color: rgba(139, 92, 246, 0.2);
+        }
+        
+        .enrollment-bar {
+            background-color: var(--bg-darker);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .enrollment-text {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+        
+        .enrollment-button {
+            background-color: var(--primary-purple);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .enrollment-button:hover {
+            background-color: var(--dark-purple);
+        }
+        
+        .device-info {
+            margin-top: 2rem;
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .device-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .device-title-icon {
+            color: var(--primary-purple);
+        }
+        
+        .device-details {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .device-spec {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .device-spec-title {
+            font-size: 0.9rem;
+            color: var(--primary-purple);
+            margin-bottom: 0.5rem;
+        }
+        
+        .device-spec-value {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            line-height: 1.4;
         }
         
         @media (max-width: 1024px) {
@@ -330,71 +436,65 @@
             
             .sidebar {
                 width: 100%;
+                position: static;
+            }
+            
+            .enrollment-bar {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
             }
         }
         
         @media (max-width: 768px) {
             .classes-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
             
             .header-actions {
                 display: none;
             }
-        }
-        
-        /* Add focus styles for better keyboard navigation */
-        button:focus-visible,
-        a:focus-visible {
-            outline: 2px solid var(--primary-purple);
-            outline-offset: 2px;
-        }
-        
-        /* Improve button hover states */
-        .back-button:hover,
-        .back-button:focus {
-            color: var(--primary-purple);
-        }
-        
-        /* Add print styles */
-        @media print {
-            header, .sidebar {
-                display: none;
+            
+            main {
+                padding: 1rem;
             }
             
-            body {
-                background: white;
-                color: black;
+            .content-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .classes-grid {
+                grid-template-columns: 1fr;
             }
             
-            .class-card {
-                break-inside: avoid;
-                border: 1px solid #ccc;
-            }
-            
-            .content-actions {
-                display: none;
+            .device-details {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <button class="back-button" aria-label="Go back to projects" type="button">
-            <span aria-hidden="true" lang="en">←</span> Back to Projects
+        <button class="back-button" aria-label="Go back to projects">
+            <span>←</span> Back to Projects
         </button>
-        <div class="logo" role="banner">
-            <span class="logo-symbol" aria-hidden="true" lang="en">&lt;|&gt;</span> Katmai Computing
+        <div class="logo">
+            <span class="logo-symbol">&lt;|&gt;</span> Katmai Computing
         </div>
         <div class="header-actions">
-            <button class="header-button" aria-label="Equipment settings" type="button">
-                <span aria-hidden="true">⚙️</span> Equipment
+            <button class="header-button" aria-label="Equipment Settings">
+                <span>⚙️</span> Equipment
             </button>
-            <button class="header-button" aria-label="Export content" type="button">
-                <span aria-hidden="true">↗️</span> Export
+            <button class="header-button" aria-label="Export Content">
+                <span>↗️</span> Export
             </button>
-            <button class="header-button" aria-label="Maximize grid view" type="button">
-                <span aria-hidden="true">⊞</span> Maximize Grid
+            <button class="header-button" aria-label="Maximize Grid View">
+                <span>⊞</span> Maximize Grid
             </button>
         </div>
     </header>
@@ -402,197 +502,256 @@
     <main>
         <div class="content-header">
             <div class="content-title">
-                <span class="content-title-icon" aria-hidden="true">⚛️</span> Quantum Computing Classes
+                <span class="content-title-icon">⚛️</span> Quantum Computing Classes
             </div>
             <div class="content-actions">
-                <button class="action-button" aria-label="View parameters" type="button">Parameters <span aria-hidden="true">⚙️</span></button>
-                <button class="action-button" aria-label="View sequence" type="button">Sequence <span aria-hidden="true">📋</span></button>
+                <button class="action-button" aria-label="Adjust Parameters">Parameters ⚙️</button>
+                <button class="action-button" aria-label="View Sequence">Sequence 📋</button>
+            </div>
+        </div>
+        
+        <div class="device-info">
+            <h2 class="device-title"><span class="device-title-icon">🧲</span> 1-Qubit NMR Quantum Register</h2>
+            <div class="device-details">
+                <div class="device-spec">
+                    <h3 class="device-spec-title">Device Specifications</h3>
+                    <p class="device-spec-value">Single-qubit nuclear magnetic resonance (NMR) quantum computing system with precision RF pulse control and advanced quantum state readout capabilities.</p>
+                </div>
+                <div class="device-spec">
+                    <h3 class="device-spec-title">Capabilities</h3>
+                    <p class="device-spec-value">Perform quantum gates (X, Y, Z, H), demonstrate superposition, implement basic quantum circuits, and visualize Bloch sphere representations.</p>
+                </div>
+                <div class="device-spec">
+                    <h3 class="device-spec-title">Learning Path</h3>
+                    <p class="device-spec-value">Follow the course sequence below to master your 1-qubit NMR device, from basic computing concepts to advanced quantum state preparations.</p>
+                </div>
             </div>
         </div>
         
         <div class="container">
-            <aside class="sidebar" aria-label="Course navigation">
-                <nav>
-                    <div class="sidebar-section">
-                        <div class="sidebar-header" role="button" aria-expanded="true" tabindex="0">
-                            <h2><span class="sidebar-icon" aria-hidden="true">📚</span> Learning Paths</h2>
-                            <span class="collapsed-icon" aria-hidden="true">▼</span>
-                        </div>
-                        <div class="sidebar-content">
-                            <ul class="sidebar-menu" role="menu">
-                                <li role="menuitem" class="active"><a href="#intro" aria-current="page">Introduction <span class="arrow-icon" aria-hidden="true">›</span></a></li>
-                                <li role="menuitem"><a href="#gates">Quantum Gate, Circuit and Algorithm <span class="arrow-icon" aria-hidden="true">›</span></a></li>
-                                <li role="menuitem"><a href="#math">Mathematical Expression <span class="arrow-icon" aria-hidden="true">›</span></a></li>
-                                <li role="menuitem"><a href="#build">Make a Quantum Computer <span class="arrow-icon" aria-hidden="true">›</span></a></li>
-                                <li role="menuitem"><a href="#advanced">Expand Knowledge <span class="arrow-icon" aria-hidden="true">›</span></a></li>
-                            </ul>
-                        </div>
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-header">
+                        <h2><span class="sidebar-icon">📚</span> Learning Paths</h2>
+                        <span class="collapsed-icon">▼</span>
                     </div>
-                    
-                    <div class="sidebar-section">
-                        <div class="sidebar-header" role="button" aria-expanded="true" tabindex="0">
-                            <h2><span class="sidebar-icon" aria-hidden="true">🧪</span> Lab Resources</h2>
-                            <span class="collapsed-icon" aria-hidden="true">▼</span>
-                        </div>
-                        <div class="sidebar-content">
-                            <ul class="sidebar-menu" role="menu">
-                                <li role="menuitem"><a href="#nmr">NMR Controls <span class="arrow-icon" aria-hidden="true">›</span></a></li>
-                                <li role="menuitem"><a href="#gates">Quantum Gates <span class="arrow-icon" aria-hidden="true">›</span></a></li>
-                                <li role="menuitem"><a href="#pulse">Pulse Sequences <span class="arrow-icon" aria-hidden="true">›</span></a></li>
-                                <li role="menuitem"><a href="#freq">Frequency Settings <span class="arrow-icon" aria-hidden="true">›</span></a></li>
-                            </ul>
-                        </div>
+                    <div class="sidebar-content">
+                        <ul class="sidebar-menu">
+                            <li class="active"><a href="#introduction">Introduction <span class="arrow-icon">›</span></a></li>
+                            <li><a href="#quantum-gate">Quantum Gate, Circuit and Algorithm <span class="arrow-icon">›</span></a></li>
+                            <li><a href="#math-expression">Mathematical Expression <span class="arrow-icon">›</span></a></li>
+                            <li><a href="#quantum-computer">Make a Quantum Computer <span class="arrow-icon">›</span></a></li>
+                            <li><a href="#expand-knowledge">Expand Knowledge <span class="arrow-icon">›</span></a></li>
+                        </ul>
                     </div>
-                </nav>
+                </div>
+                
+                <div class="sidebar-section">
+                    <div class="sidebar-header">
+                        <h2><span class="sidebar-icon">🧪</span> Lab Resources</h2>
+                        <span class="collapsed-icon">▼</span>
+                    </div>
+                    <div class="sidebar-content">
+                        <ul class="sidebar-menu">
+                            <li><a href="#nmr-controls">NMR Controls <span class="arrow-icon">›</span></a></li>
+                            <li><a href="#quantum-gates">Quantum Gates <span class="arrow-icon">›</span></a></li>
+                            <li><a href="#pulse-sequences">Pulse Sequences <span class="arrow-icon">›</span></a></li>
+                            <li><a href="#frequency-settings">Frequency Settings <span class="arrow-icon">›</span></a></li>
+                        </ul>
+                    </div>
+                </div>
             </aside>
             
-            <div class="classes-grid" role="list">
-                <!-- Class Card 1 -->
-                <article class="class-card" role="listitem">
-                    <div class="class-image" aria-hidden="true">
+            <div class="classes-grid">
+                <div class="class-card" id="introduction">
+                    <div class="class-image">
                         <div class="class-icon">⚛️</div>
                         <div class="class-level">Beginner</div>
                     </div>
                     <div class="class-content">
                         <h3 class="class-title">Lecture 1: Computing and Computer</h3>
-                        <p class="class-description">Fundamental introduction to quantum computing principles and the basics of quantum information processing.</p>
-                        <div class="class-topics" aria-label="Topics covered">
+                        <p class="class-description">Fundamental introduction to quantum computing principles and the basics of quantum information processing. Learn how your 1-qubit NMR device functions as a quantum register.</p>
+                        <div class="class-topics">
                             <span class="badge">Decimal</span>
                             <span class="badge">Binary</span>
                             <span class="badge">Von Neumann</span>
                             <span class="badge">Boolean Logic</span>
                         </div>
                     </div>
-                </article>
+                </div>
                 
-                <!-- Class Card 2 -->
-                <article class="class-card" role="listitem">
-                    <div class="class-image" aria-hidden="true">
+                <div class="class-card">
+                    <div class="class-image">
                         <div class="class-icon">🔄</div>
                         <div class="class-level">Beginner</div>
                     </div>
                     <div class="class-content">
                         <h3 class="class-title">Lecture 2: Qubit</h3>
-                        <p class="class-description">Learn about quantum bits, their properties, and how they differ from classical bits in computation.</p>
-                        <div class="class-topics" aria-label="Topics covered">
+                        <p class="class-description">Learn about quantum bits, their properties, and how they differ from classical bits in computation. Explore how your NMR device represents and manipulates a single qubit.</p>
+                        <div class="class-topics">
                             <span class="badge">Quantum Mechanics</span>
                             <span class="badge">Superposition</span>
                             <span class="badge">Measurement</span>
-                            <span class="badge">Entanglement</span>
+                            <span class="badge">Bloch Sphere</span>
                         </div>
                     </div>
-                </article>
+                </div>
                 
-                <!-- Class Card 3 -->
-                <article class="class-card" role="listitem">
-                    <div class="class-image" aria-hidden="true">
-                        <div class="class-icon" lang="en">⟨ψ|</div>
+                <div class="class-card" id="quantum-gate">
+                    <div class="class-image">
+                        <div class="class-icon">⟨ψ|</div>
                         <div class="class-level">Intermediate</div>
                     </div>
                     <div class="class-content">
                         <h3 class="class-title">Lecture 3: Classical to Quantum Computing</h3>
-                        <p class="class-description">Explore the transition from classical to quantum computing paradigms and core concepts.</p>
-                        <div class="class-topics" aria-label="Topics covered">
-                            <span class="badge">Half Adder</span>
-                            <span class="badge">Full Adder</span>
+                        <p class="class-description">Explore the transition from classical to quantum computing paradigms and core concepts. Learn how your single qubit can demonstrate quantum advantages.</p>
+                        <div class="class-topics">
+                            <span class="badge">Logic Gates</span>
                             <span class="badge">X Gate</span>
-                            <span class="badge">CNOT Gate</span>
-                            <span class="badge">Toffoli Gate</span>
+                            <span class="badge">Pauli Operators</span>
+                            <span class="badge">Quantum NOT</span>
                         </div>
                     </div>
-                </article>
+                </div>
                 
-                <!-- Class Card 4 -->
-                <article class="class-card" role="listitem">
-                    <div class="class-image" aria-hidden="true">
+                <div class="class-card">
+                    <div class="class-image">
                         <div class="class-icon">🔬</div>
                         <div class="class-level">Intermediate</div>
                     </div>
                     <div class="class-content">
                         <h3 class="class-title">Lecture 4: Quantum Computing Circuit Model</h3>
-                        <p class="class-description">Learn about quantum circuit design principles and implementation of quantum algorithms.</p>
-                        <div class="class-topics" aria-label="Topics covered">
+                        <p class="class-description">Learn about quantum circuit design principles and implementation of quantum algorithms on your single-qubit NMR device through custom pulse sequences.</p>
+                        <div class="class-topics">
                             <span class="badge">Qubit States</span>
                             <span class="badge">Superposition</span>
                             <span class="badge">H Gate</span>
-                            <span class="badge">Bell State</span>
+                            <span class="badge">Phase Shifts</span>
                         </div>
                     </div>
-                </article>
+                </div>
                 
-                <!-- Class Card 5 -->
-                <article class="class-card" role="listitem">
-                    <div class="class-image" aria-hidden="true">
+                <div class="class-card" id="math-expression">
+                    <div class="class-image">
                         <div class="class-icon">🧮</div>
                         <div class="class-level">Advanced</div>
                     </div>
                     <div class="class-content">
-                        <h3 class="class-title">Lecture 5: Deutsch Algorithm</h3>
-                        <p class="class-description">Dive into the Deutsch algorithm, one of the first examples of quantum algorithms outperforming classical ones.</p>
-                        <div class="class-topics" aria-label="Topics covered">
-                            <span class="badge">Quantum Algorithm</span>
-                            <span class="badge">Oracle Functions</span>
-                            <span class="badge">Parallelism</span>
+                        <h3 class="class-title">Lecture 5: Single-Qubit Algorithms</h3>
+                        <p class="class-description">Explore fundamental quantum algorithms implementable on your 1-qubit NMR device, demonstrating key quantum concepts and principles.</p>
+                        <div class="class-topics">
+                            <span class="badge">Quantum Phase</span>
+                            <span class="badge">Random Number</span>
+                            <span class="badge">State Rotation</span>
                             <span class="badge">Interference</span>
                         </div>
                     </div>
-                </article>
+                </div>
                 
-                <!-- Class Card 6 -->
-                <article class="class-card" role="listitem">
-                    <div class="class-image" aria-hidden="true">
-                        <div class="class-icon" lang="en">⟩|⟨</div>
+                <div class="class-card">
+                    <div class="class-image">
+                        <div class="class-icon">⟩|⟨</div>
                         <div class="class-level">Advanced</div>
                     </div>
                     <div class="class-content">
-                        <h3 class="class-title">Lecture 6: Quantum Computing Circuit Model (2)</h3>
-                        <p class="class-description">Advanced quantum circuit design with focus on complex gate operations and measurements.</p>
-                        <div class="class-topics" aria-label="Topics covered">
+                        <h3 class="class-title">Lecture 6: NMR Pulse Sequences</h3>
+                        <p class="class-description">Master advanced RF pulse techniques for your NMR device to achieve precise quantum state control and manipulation of your qubit.</p>
+                        <div class="class-topics">
                             <span class="badge">Z Gate</span>
-                            <span class="badge">CZ Gate</span>
-                            <span class="badge">Toffoli Applications</span>
+                            <span class="badge">Phase Control</span>
+                            <span class="badge">RF Pulses</span>
                             <span class="badge">Measurement</span>
                         </div>
                     </div>
-                </article>
+                </div>
                 
-                <!-- Class Card 7 -->
-                <article class="class-card" role="listitem">
-                    <div class="class-image" aria-hidden="true">
-                        <div class="class-icon" lang="en">|Ψ⟩</div>
+                <div class="class-card" id="quantum-computer">
+                    <div class="class-image">
+                        <div class="class-icon">|Ψ⟩</div>
                         <div class="class-level">Advanced</div>
                     </div>
                     <div class="class-content">
                         <h3 class="class-title">Lecture 7: Quantum States Preparation</h3>
-                        <p class="class-description">Learn techniques for preparing and manipulating specific quantum states for computation.</p>
-                        <div class="class-topics" aria-label="Topics covered">
+                        <p class="class-description">Learn techniques for preparing and manipulating specific quantum states on your 1-qubit NMR device for optimized computation.</p>
+                        <div class="class-topics">
                             <span class="badge">State Vectors</span>
                             <span class="badge">Density Matrices</span>
                             <span class="badge">Purification</span>
                             <span class="badge">Quantum Channels</span>
                         </div>
                     </div>
-                </article>
+                </div>
                 
-                <!-- Class Card 8 -->
-                <article class="class-card" role="listitem">
-                    <div class="class-image" aria-hidden="true">
+                <div class="class-card" id="expand-knowledge">
+                    <div class="class-image">
                         <div class="class-icon">🔍</div>
                         <div class="class-level">Expert</div>
                     </div>
                     <div class="class-content">
-                        <h3 class="class-title">Lecture 8: Grover Algorithm</h3>
-                        <p class="class-description">Explore Grover's quantum search algorithm and its applications in database searching.</p>
-                        <div class="class-topics" aria-label="Topics covered">
-                            <span class="badge">Amplitude Amplification</span>
-                            <span class="badge">Oracle</span>
-                            <span class="badge">Diffusion Operator</span>
-                            <span class="badge">Quadratic Speedup</span>
+                        <h3 class="class-title">Lecture 8: Advanced Applications</h3>
+                        <p class="class-description">Explore cutting-edge applications of single-qubit systems and how your NMR device connects to the broader quantum computing ecosystem.</p>
+                        <div class="class-topics">
+                            <span class="badge">Quantum Sensing</span>
+                            <span class="badge">NMR Spectroscopy</span>
+                            <span class="badge">Error Correction</span>
+                            <span class="badge">Quantum Networks</span>
                         </div>
                     </div>
-                </article>
+                </div>
             </div>
         </div>
+        
+        <div class="enrollment-bar">
+            <div class="enrollment-text">
+                Ready to master your 1-qubit NMR quantum device? Start your learning journey today!
+            </div>
+            <button class="enrollment-button">Enroll in Full Program</button>
+        </div>
     </main>
+    
+    <script>
+        // Add event listeners for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sidebar toggle functionality
+            const sidebarHeaders = document.querySelectorAll('.sidebar-header');
+            
+            sidebarHeaders.forEach(header => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.collapsed-icon');
+                
+                // Set initial state
+                content.style.display = 'block';
+                
+                header.addEventListener('click', function() {
+                    const isCollapsed = content.style.display === 'none';
+                    
+                    // Toggle content visibility
+                    content.style.display = isCollapsed ? 'block' : 'none';
+                    
+                    // Rotate arrow icon
+                    icon.style.transform = isCollapsed ? 'rotate(0deg)' : 'rotate(-90deg)';
+                });
+            });
+
+            // Add active class handling for sidebar menu items
+            const menuItems = document.querySelectorAll('.sidebar-menu li');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                });
+            });
+
+            // Initialize enrollment button
+            const enrollButton = document.querySelector('.enrollment-button');
+            if (enrollButton) {
+                enrollButton.addEventListener('click', function() {
+                    alert('Thank you for your interest! Enrollment functionality coming soon.');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
